@@ -14,7 +14,8 @@ struct timespec thread_timeout(unsigned int milliseconds);
 ```
 
 † Mac lacks `pthread_timed_mutex` this library provides a version (that's everything, regular pthread.h is included)
-* Windows/Mac/Linux (BSD is untested)
+
+\* Windows/Mac/Linux (BSD is untested)
 
 ## LICENSE
 ```
