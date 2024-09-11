@@ -124,7 +124,9 @@ int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock);
 int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);
 #else
 #include <pthread.h>
+#infndef PTHREAD_SHIM_NO_EXTRAS
 #include <unistd.h>
+#endif // PTHREAD_SHIM_NO_EXTRAS
 #if defined(PTHREAD_SHIM_PLATFORM_MAC)
 // MacOS pthread's doesn't supported mutex_timedlock, so this is an emulated
 // version using a loop
