@@ -46,13 +46,6 @@ extern "C" {
 #endif
 #endif
 
-#if !defined(EZ_MALLOC)
-#define EZ_MALLOC malloc
-#endif
-#if !defined(EZ_FREE)
-#define EZ_FREE free
-#endif
-
 #include <time.h>
 #ifdef PTHREAD_SHIM_PLATFORM_WINDOWS
 #include <windows.h>
@@ -243,13 +236,13 @@ static DWORD WINAPI WindowsThreadWrapper(void *arg) {
     ezWindowsThreadWrapper *data = (ezWindowsThreadWrapper*)arg;
     void*(*func)(void*) = arg->func;
     void *arg = arg->arg;
-    EZ_FREE(data);
+    free(data);
     func(arg);
     return 0;
 }
 
 int pthread_create(pthread_t *thread, pthread_attr_t *attr, void*(*func)(void*), void *arg) {
-    ezWindowsThreadWrapper *tmp = EZ_MALLOC(sizeof(ezWindowsThreadWrapper));
+    ezWindowsThreadWrapper *tmp = malloc(sizeof(ezWindowsThreadWrapper));
     tmp->func = start_routine;
     tmp->arg = arg;
     *thread = CreateThread(NULL, 0, WindowsThreadWrapper, (void*)data, 0, NULL);
