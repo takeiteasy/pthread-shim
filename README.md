@@ -13,7 +13,7 @@ struct timespec thread_timeout(unsigned int milliseconds);
 #endif
 ```
 
-† Mac lacks `pthread_timed_mutex` this library provides a version (that's everything, regular pthread.h is included)
+† Mac lacks `pthread_mutex_timedlock` this library provides a version (that's everything, regular pthread.h is included)
 
 \* Windows/Mac/Linux (BSD is untested)
 
